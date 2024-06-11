@@ -29,7 +29,7 @@ public abstract class VintagiumChunkProviderMixin implements ChunkProviderClient
             return null;
         }
         if (wrappedListener == null || wrappedListener.delegate != listener) {
-            wrappedListener = new VintagiumChunkStatusListener(listener);
+            wrappedListener = new VintagiumChunkStatusListener(listener);//problem
         }
         return wrappedListener;
     }
