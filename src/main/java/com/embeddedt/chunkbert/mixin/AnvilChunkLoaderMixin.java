@@ -17,12 +17,22 @@ public class AnvilChunkLoaderMixin implements AnvilChunkLoaderExt {
         chunkbert$loadTes = b;
     }
 
-    @Redirect(method = "loadEntities", at = @At(value = "INVOKE", target = "Lnet/minecraft/nbt/NBTTagCompound;getTagList(Ljava/lang/String;I)Lnet/minecraft/nbt/NBTTagList;"))
-    private NBTTagList getTagList(NBTTagCompound compound, String key, int type) {
-        if(!chunkbert$loadTes) {
-            if(key.equals("TileEntities") || key.equals("TileTicks")) {
-                return new NBTTagList();
-            }
+    @Redirect(method = "loadEntities", at = @At(value = "INVOKE", target = "Lnet/minecraft/nbt/NBTTagCompound;getTagList(Ljava/lang/String;I)Lnet/minecraft/nbt/NBTTagList;", ordinal = 1))
+    private NBTTagList getTagList_1(NBTTagCompound compound, String key, int type)
+    {
+        if (!chunkbert$loadTes)
+        {
+            return new NBTTagList();
+        }
+        return compound.getTagList(key, type);
+    }
+
+    @Redirect(method = "loadEntities", at = @At(value = "INVOKE", target = "Lnet/minecraft/nbt/NBTTagCompound;getTagList(Ljava/lang/String;I)Lnet/minecraft/nbt/NBTTagList;", ordinal = 2))
+    private NBTTagList getTagList_2(NBTTagCompound compound, String key, int type)
+    {
+        if (!chunkbert$loadTes)
+        {
+            return new NBTTagList();
         }
         return compound.getTagList(key, type);
     }

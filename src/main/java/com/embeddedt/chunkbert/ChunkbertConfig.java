@@ -5,8 +5,8 @@ import net.minecraftforge.common.config.Config;
 @Config(modid = Chunkbert.MOD_ID)
 public class ChunkbertConfig {
     public static boolean enabled = true;
-    @Config.Comment("Do not load block entities (e.g. chests) in fake chunks.\nThese need updating every tick which can add up.\n\nEnabled by default because the render distance for block entities is usually smaller than the server-view distance anyway.")
-    public static boolean noBlockEntities = true;
+    @Config.Comment("Do not load block entities in fake chunks.")
+    public static boolean noBlockEntities = false;
     @Config.Comment("Delays the unloading of chunks which are outside your view distance.\nSaves you from having to reload all chunks when leaving the area for a short moment (e.g. cut scenes).\nDoes not work across dimensions.")
     public static int unloadDelaySecs = 60;
 
